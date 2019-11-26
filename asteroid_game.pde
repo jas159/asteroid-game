@@ -1,5 +1,11 @@
+int points, lives;
 boolean upkey, downkey, leftkey, rightkey, spacekey;
 PImage shipimg;
+PImage asteroidimg;
+PImage starimg;
+PImage galaxyimg;
+PImage ufoimg;
+UFO myUfo;
 Ship myShip;
 Particle myParticle;
 ArrayList<GameObject> myGameObjects;
@@ -10,24 +16,37 @@ final int gameover=3;
 
 void setup() {
   size(800, 600);
+  galaxyimg = loadImage("galaxy.jpg");
+  galaxyimg.resize(800, 600);
+  ufoimg= loadImage("ufo.png");
+  ufoimg.resize(75, 75);
   shipimg = loadImage("ship.png");
   shipimg.resize(50, 50);
+  asteroidimg = loadImage("asteroid.png");
+  asteroidimg.resize(100, 100);
+  starimg = loadImage("star.png");
+  starimg.resize(5, 5);
   imageMode(CENTER);
   myShip = new Ship();
+  myUfo = new UFO();
   myGameObjects = new ArrayList<GameObject>();
 
   myGameObjects.add(new Asteroid());
   myGameObjects.add(new Asteroid());
   myGameObjects.add(new Asteroid());
   myGameObjects.add(new Asteroid());
-  
+  myGameObjects.add(new Asteroid());
+  myGameObjects.add(new Asteroid());
+  myGameObjects.add(new Asteroid());
 
-         
+  myGameObjects.add(new UFO()); 
+  myGameObjects.add(new UFO());
+
   mode = intro;
 }
 
 void draw() {
-  background(0);
+  background(galaxyimg);
 
   if (mode == intro) {
     intro();

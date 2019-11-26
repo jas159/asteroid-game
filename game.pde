@@ -1,8 +1,12 @@
-int points;
 void game() {
+
   myShip.show();
   myShip.act();
 
+  fill(255, 0, 0);
+  textSize(25);
+  text(""+points, 50, 25);
+  text("lives:" +myShip.lives, 50, 525);
 
 
   int i = 0;
@@ -16,15 +20,9 @@ void game() {
       i++;
     }
   }
-
-
-    fill(255, 0, 0);
-    textSize(50);
-    text(""+points, 50, 50);
-  }
+}
 
 
 
-  void gameClicks() {
-    
-  }
+void gameClicks() {
+}

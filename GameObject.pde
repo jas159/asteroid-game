@@ -1,10 +1,11 @@
+
 abstract class GameObject {
-  int points;
+
   int lives;
   int size;
   PVector location;
   PVector velocity;
-
+  int a;
   GameObject() {
   }
 
@@ -12,6 +13,8 @@ abstract class GameObject {
   }
 
   void act() {
+
+    //gravity.setMag( min(10/dist(location.x, location.y, width/2, height/2), 10));
     location.add(velocity);
 
     if (location.y < -50) location.y = height+50;

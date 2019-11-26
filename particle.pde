@@ -1,35 +1,37 @@
-class Particle extends GameObject{
+class Particle extends GameObject {
 
   //instance variables
-  float x, y, z, vx, vy, size ;
-  int a, timer;
-boolean alive;
- 
-  Particle(Float incomingX, float incomingY) {
-    x = incomingX;
-    y = incomingY;
-    vx = random(-5, 5);
-    vy = random (-10);
-    size = 0.5;
-    alive = true;
+  float x, y;
+  int timer;
+  float s;
+  Particle(float x, float y) {
+
+    location = new PVector (x, y);
+    velocity = new PVector(0, 1);
+    velocity.setMag(random(0, 2));
+    velocity.rotate(random(TWO_PI));
+    lives = 1;
+    timer = 60;
+    //s=1;
+    s = random(2, 5);
+    a= int(random(100));
   }
 
 
   void show() {
-    fill (0);
-    ellipse (x, y, size, size);
+    //strokeWeight(255);
+    //fill(255);
+    //ellipse (location.x, location.y, s, s);
+    image(starimg, location.x, location.y, s,s);
   }
 
 
 
   void act() {
-    x= x+vx;
-    y= y+vy;
-
-
-    if (x > 600 || x < 0 || y >600 || y<0) {
-     alive = false;
+    super.act();
+    timer--;
+    if (timer <= 0) {
+      lives = 0;
     }
-   
   }
 }

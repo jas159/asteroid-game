@@ -1,52 +1,57 @@
+class UFO extends GameObject {
+PVector direction;
+  int size;
+  int shotTimer;
+  int threshold;
+  int timer;
 
-class Asteroid extends GameObject {
-
-  Asteroid() {
-    lives = 1;
-    size = 100;
+  UFO() {
+    super();
+    lives = 3;
+    size = 75;
+    shotTimer = 0;
+    threshold = 100;
     location = new PVector (random(width), random(height));
     velocity = new PVector(0, 1);
-    velocity.setMag(random(0, 4));
+    velocity.setMag(random(0, 3));
     velocity.rotate(random(TWO_PI));
+    direction = new PVector(0, -0.1);
   }
 
-  Asteroid(int s, float x, float y) {
-    lives = 1;
-    size = s;
-    location = new PVector (x, y);
-    velocity = new PVector(0, 1);
-    velocity.setMag(random(0, 2));
-    velocity.rotate(random(TWO_PI));
-  }
   void show() {
-
-    image(asteroidimg, location.x, location.y, size, size);
-    //fill(255);
+    //fill(150);
     //ellipse(location.x, location.y, size, size);
+    image(ufoimg, location.x, location.y, size, size);
+    fill(0);
+    textSize(20);
+    text("" +lives, location.x, location.y);
   }
 
   void act() {
     super.act();
 
+    shotTimer++;
+    
+    if (shotTimer >= threshold) {
+    myGameObjects.add(new UFObullet());
+    shotTimer = 0;
+    
+    }
     int i = 0;
     while (i < myGameObjects.size()) {
       GameObject myObj = myGameObjects.get(i);
       if (myObj instanceof Bullet) {
         if (dist(myObj.location.x, myObj.location.y, location.x, location.y) < size/2 + myObj.size/2) {
-          lives = 0;
+          lives--;
           myObj.lives = 0;
-          points++;
 
-          if (size > 30) {
-            myGameObjects.add(new Asteroid(size/2, location.x, location.y));
-            myGameObjects.add(new Asteroid(size/2, location.x, location.y));
-          }
           if (lives == 0) {
-            myGameObjects.add(new Particle(location.x, location.y)); 
-            myGameObjects.add(new Particle(location.x, location.y)); 
-            myGameObjects.add(new Particle(location.x, location.y)); 
+            points++;
             myGameObjects.add(new Particle(location.x, location.y));
-            myGameObjects.add(new Particle(location.x, location.y)); 
+            myGameObjects.add(new Particle(location.x, location.y));
+            myGameObjects.add(new Particle(location.x, location.y));
+            myGameObjects.add(new Particle(location.x, location.y));
+             myGameObjects.add(new Particle(location.x, location.y)); 
             myGameObjects.add(new Particle(location.x, location.y));
             myGameObjects.add(new Particle(location.x, location.y)); 
             myGameObjects.add(new Particle(location.x, location.y)); 
