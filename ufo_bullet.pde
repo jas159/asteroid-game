@@ -4,8 +4,8 @@ class UFObullet extends GameObject {
   int timer;
 
   UFObullet() {
-    location = new PVector (myUfo.location.x, myUfo.location.y);
-    velocity = new PVector(myUfo.direction.x,myUfo.direction.y);
+    location = new PVector (ufos.location.x, ufos.location.y);
+    velocity = new PVector(ufos.direction.x,ufos.direction.y);
     velocity.setMag(10);
     lives = 1;
     timer = 50;
@@ -14,7 +14,7 @@ class UFObullet extends GameObject {
 
   void show() {
     fill(#0EEA34);
-    ellipse(myUfo.location.x, myUfo.location.y, size, size);
+    ellipse(ufos.location.x, ufos.location.y, size, size);
   }
 
   void act() {

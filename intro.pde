@@ -4,6 +4,7 @@ void intro() {
   textSize(20);
   fill(255);
   text("asteroid game", 400, 200);
+  song1.play();
 }
 
 void introClicks() {

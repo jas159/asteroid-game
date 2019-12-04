@@ -1,11 +1,23 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
+Minim minim;
+AudioPlayer song1;
+AudioPlayer pew;
+int asteriodcount;
 int points, lives;
+int highscore;
 boolean upkey, downkey, leftkey, rightkey, spacekey;
 PImage shipimg;
 PImage asteroidimg;
 PImage starimg;
 PImage galaxyimg;
 PImage ufoimg;
-UFO myUfo;
+UFO ufos;
 Ship myShip;
 Particle myParticle;
 ArrayList<GameObject> myGameObjects;
@@ -15,6 +27,9 @@ final int game =2;
 final int gameover=3;
 
 void setup() {
+  minim = new Minim(this);
+  song1 = minim.loadFile("gamemusic.mp3");
+  pew = minim.loadFile("pew.mp3");
   size(800, 600);
   galaxyimg = loadImage("galaxy.jpg");
   galaxyimg.resize(800, 600);
@@ -28,7 +43,7 @@ void setup() {
   starimg.resize(5, 5);
   imageMode(CENTER);
   myShip = new Ship();
-  myUfo = new UFO();
+  ufos = new UFO();
   myGameObjects = new ArrayList<GameObject>();
 
   myGameObjects.add(new Asteroid());
