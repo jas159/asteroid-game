@@ -6,7 +6,7 @@ class Asteroid extends GameObject {
     size = 100;
     location = new PVector (random(width), random(height));
     velocity = new PVector(0, 1);
-    velocity.setMag(random(0, 2));
+    velocity.setMag(random(0, 4));
     velocity.rotate(random(TWO_PI));
   }
 
@@ -15,12 +15,14 @@ class Asteroid extends GameObject {
     size = s;
     location = new PVector (x, y);
     velocity = new PVector(0, 1);
-    velocity.setMag(random(0, 2));
+    velocity.setMag(random(0, 1));
     velocity.rotate(random(TWO_PI));
   }
   void show() {
-    fill(255);
-    ellipse(location.x, location.y, size, size);
+
+    image(asteroidimg, location.x, location.y, size, size);
+    //fill(255);
+    //ellipse(location.x, location.y, size, size);
   }
 
   void act() {
@@ -34,20 +36,35 @@ class Asteroid extends GameObject {
           lives = 0;
           myObj.lives = 0;
           points++;
-
+       
           if (size > 30) {
             myGameObjects.add(new Asteroid(size/2, location.x, location.y));
             myGameObjects.add(new Asteroid(size/2, location.x, location.y));
           }
-        //  if (lives == 0 ) {
-        //  myGameObjects.add(new Particle(location.x,location.y)); 
-          
-        //}
-      }
+          if (lives == 0) {
+            myGameObjects.add(new Particle(location.x, location.y)); 
+            myGameObjects.add(new Particle(location.x, location.y)); 
+            myGameObjects.add(new Particle(location.x, location.y)); 
+            myGameObjects.add(new Particle(location.x, location.y));
+            myGameObjects.add(new Particle(location.x, location.y)); 
+            myGameObjects.add(new Particle(location.x, location.y));
+            myGameObjects.add(new Particle(location.x, location.y)); 
+            myGameObjects.add(new Particle(location.x, location.y)); 
+            myGameObjects.add(new Particle(location.x, location.y)); 
+            myGameObjects.add(new Particle(location.x, location.y));
+            myGameObjects.add(new Particle(location.x, location.y)); 
+            myGameObjects.add(new Particle(location.x, location.y));
+            myGameObjects.add(new Particle(location.x, location.y)); 
+            myGameObjects.add(new Particle(location.x, location.y)); 
+            myGameObjects.add(new Particle(location.x, location.y)); 
+            myGameObjects.add(new Particle(location.x, location.y));
+            myGameObjects.add(new Particle(location.x, location.y)); 
+            myGameObjects.add(new Particle(location.x, location.y));
+          }
+        }
       }
 
       i++;
     }
   }
-
 }
